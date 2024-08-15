@@ -1,0 +1,80 @@
+.carousel-item img {
+    width: 100%;
+    height: auto;
+}
+
+/*** testimonial Start ***/
+.testimonial .owl-nav .owl-prev {
+    position: absolute;
+    top: -58px;
+    right: 0;
+    color: #005599;
+    padding: 5px 25px;
+    border: 1px solid #ffc107;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.testimonial .owl-nav .owl-prev:hover {
+    background: #ffc107;
+    color: white;
+}
+
+.testimonial .owl-nav .owl-next {
+    position: absolute;
+    top: -58px;
+    right: 88px;
+    color: #005599;
+    padding: 5px 25px;
+    border: 1px solid #ffc107;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.testimonial .owl-nav .owl-next:hover {
+    background: #ffc107;
+    color: white;
+}
+/*** testimonial End ***/
+
+/* Định dạng cho nút cuộn trang lên đầu */
+#scrollToTop {
+    position: fixed;
+    bottom: 20px; /* Khoảng cách từ dưới cùng */
+    right: 20px; /* Khoảng cách từ bên phải */
+    background-color: #007bff; /* Màu nền của nút */
+    color: white; /* Màu chữ */
+    border: none; /* Không có viền */
+    border-radius: 50%; /* Góc bo tròn */
+    width: 50px; /* Chiều rộng của nút */
+    height: 50px; /* Chiều cao của nút */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000; /* Đảm bảo nút hiển thị trên các phần tử khác */
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#scrollToTop:hover {
+    background-color: #0056b3; /* Màu nền khi di chuột qua nút */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+#scrollToTop i {
+    font-size: 20px; /* Kích thước icon */
+}
+
+.content-title {
+    color: #003366;
+}
+
+.swal2-confirm {
+    color: #fff;
+    background-color: #ffc107;
+}
+
+.swiper-container {
+    overflow: hidden;
+}

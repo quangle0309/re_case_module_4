@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Thanh Toán Vé Máy Bay</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #E9ECEF;
+            margin: 0;
+            padding: 0;
+            color: #495057;
+        }
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 25px;
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+        fieldset {
+            border: 2px solid #DEE2E6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #F8F9FA;
+        }
+        legend {
+            font-weight: bold;
+            color: #343A40;
+            font-size: 1.1em;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #212529;
+        }
+        input {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #CED4DA;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+        input[type="date"], input[type="number"], input[type="tel"], input[type="email"] {
+            font-family: inherit;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056B3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Thanh Toán Vé Máy Bay</h1>
+    <form action="/vnp" method="post" th:object="${flight}">
+        <!-- Thông tin chuyến bay -->
+        <fieldset>
+            <legend>Thông Tin Đặt Chỗ</legend>
+            <input type="hidden" name="flightId" th:value="*{flightId}"/>
+            <label for="flightNumber">Số Chuyến Bay:</label>
+            <input type="text" id="flightNumber" name="flightNumber" th:value="*{flightNumber}" required>
+            <label for="departureDate">Ngày Khởi Hành:</label>
+            <input type="text" id="departureDate" name="departureDate" th:value="*{departureTime}" required>
+            <label for="departureAirport">Điểm Đi:</label>
+            <input type="text" id="departureAirport" name="destination" th:value="*{departureAirport.getCity()}" required>
+            <label for="arrivalAirport">Điểm Đến:</label>
+            <input type="text" id="arrivalAirport" name="destination" th:value="*{arrivalAirport.getCity()}" required>
+            <label for="ticketPrice">Giá Vé:</label>
+            <input type="number" id="ticketPrice" name="ticketPrice" step="0.01" th:value="*{price}" required>
+            <label for="seat">Số ghế:</label>
+            <input type="text" id="seat" name="seat" step="0.01" th:value="${seat}" required>
+        </fieldset>
+        <!-- Thông tin khách hàng -->
+        <fieldset>
+            <legend>Thông Tin Khách Hàng</legend>
+            <label for="fullName">Họ Tên:</label>
+            <input type="text" id="fullName" name="fullName" required>
+            <label for="dob">Ngày Sinh:</label>
+            <input type="date" id="dob" name="dob" required>
+            <label for="gender">Giới tính:</label>
+            <input type="text" id="gender" name="gender" required>
+            <label for="country">Quốc Gia:</label>
+            <input type="text" id="country" name="country" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </fieldset>
+        <!-- Thông tin liên hệ -->
+        <fieldset>
+            <legend>Thông Tin Liên Hệ</legend>
+            <label for="phone">Số Điện Thoại:</label>
+            <input type="tel" id="phone" name="phone" required>
+            <label for="address">Địa Chỉ:</label>
+            <input type="text" id="address" name="address" required>
+        </fieldset>
+        <button type="submit">Xác Nhận Thanh Toán</button>
+    </form>
+</div>
+</body>
+</html>

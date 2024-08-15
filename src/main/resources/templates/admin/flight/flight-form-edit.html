@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh sửa chuyến bay - SkyJourney</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/flight-form.css">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h3>Chỉnh sửa chuyến bay</h3>
+        </div>
+        <div class="card-body">
+            <form th:action="@{/admin/flights/update/{id}(id=${flight.flightId})}" th:object="${flight}" method="post">
+
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label for="flightNumber" class="form-label">Số chuyến bay</label>
+                        <input type="text" id="flightNumber" class="form-control" th:field="*{flightNumber}" required>
+                    </div>
+                    <div class="col-6">
+                        <label for="airline" class="form-label">Hãng hàng không</label>
+                        <input type="text" id="airline" class="form-control" th:field="*{airline}" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label for="departureAirport" class="form-label">Sân bay khởi hành</label>
+                        <select id="departureAirport" class="form-select" th:field="*{departureAirport}" required>
+                            <option th:each="airport : ${airports}" th:value="${airport.airportId}" th:text="${airport.airportName}"></option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label for="arrivalAirport" class="form-label">Sân bay đến</label>
+                        <select id="arrivalAirport" class="form-select" th:field="*{arrivalAirport}" required>
+                            <option th:each="airport : ${airports}" th:value="${airport.airportId}" th:text="${airport.airportName}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label for="departureTime" class="form-label">Thời gian khởi hành</label>
+                        <input type="datetime-local" id="departureTime" class="form-control" th:field="*{departureTime}" th:value="${flight.departureTime}" required>
+                    </div>
+                    <div class="col-6">
+                        <label for="arrivalTime" class="form-label">Thời gian đến</label>
+                        <input type="datetime-local" id="arrivalTime" class="form-control" th:field="*{arrivalTime}" th:value="${flight.arrivalTime}" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label for="seatCapacity" class="form-label">Chỗ ngồi</label>
+                        <input type="text" id="seatCapacity" class="form-control" th:field="*{seatCapacity}" required>
+                    </div>
+                    <div class="col-6">
+                        <label for="price" class="form-label">Giá</label>
+                        <input type="number" id="price" class="form-control" th:field="*{price}" required>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <a href="/admin/flights" class="btn btn-secondary me-3">Hủy</a>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

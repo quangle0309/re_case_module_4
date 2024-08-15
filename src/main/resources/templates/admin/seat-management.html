@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý ghế ngồi - SkyJourney</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../../src/main/resources/static/css/seat-management.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Bảng điều khiển</a>
+    <a href="user-management.html"><i class="fas fa-user"></i> Quản lý người dùng</a>
+    <a href="flight/flight-management.html"><i class="fas fa-plane"></i> Quản lý chuyến bay</a>
+    <a href="seat-management.html"><i class="fas fa-chair"></i> Quản lý ghế ngồi</a>
+    <a href="booking-management.html"><i class="fas fa-ticket-alt"></i> Quản lý đặt vé</a>
+    <a href="airport-management.html"><i class="fas fa-globe"></i> Quản lý sân bay</a>
+    <a href="#"><i class="fas fa-comments"></i> Quản lý phản hồi</a>
+    <a href="#"><i class="fas fa-chart-line"></i> Báo cáo</a>
+</div>
+
+<div class="content">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">SkyJourney Admin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-bell"></i><span class="badge">3</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                Quản lý ghế ngồi
+            </div>
+            <div class="card-body">
+                <button class="btn btn-primary mb-3">+ Thêm ghế ngồi</button>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Mã ghế</th>
+                        <th>Trạng thái</th>
+                        <th>Chỉnh sửa</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>A1</td>
+                        <td><span class="badge bg-success">Trống</span></td>
+                        <td>
+                            <button class="btn btn-info btn-sm"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

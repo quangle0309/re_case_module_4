@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch sử đặt vé</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/booking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+          integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            SkyJourney
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Đặt vé</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Liên hệ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tài khoản</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 class="text-center page-title mt-5">Lịch sử đặt vé của bạn</h2>
+    <div class="card">
+        <div class="card-header d-flex justify-content-center">
+            <h4 class="my-auto">Các chuyến bay gần đây</h4>
+        </div>
+        <div class="card-body">
+            <div th:each="booking : ${bookings}">
+                <div class="ticket-item">
+                    <div class="row align-items-center">
+                        <div class="col-lg-1 col-sm-12">
+                            <i class="fas fa-plane-departure ticket-icon fs-2 d-flex alert"></i>
+                        </div>
+                        <div class="col-lg-4 col-sm-12 ticket-details">
+                            <h5><span th:text="${booking.flight.getArrivalAirport().airportName}"></span> - <span
+                                    th:text="${booking.flight.getDepartureAirport().airportName}"></span></h5>
+                            <p>Ngày: <span
+                                    th:text="${#temporals.format(booking.flight.getDepartureTime(), 'dd-MM-yyyy')}"></span> -
+                                Thời gian: <span
+                                        th:text="${#temporals.format(booking.flight.getDepartureTime(), 'HH:mm')}"></span></p>
+                        </div>
+                        <div class="col-lg-5 col-sm-12 ticket-details">
+                            <h3>Code: <span th:text="${booking.codeBooking}"></span></h3>
+                        </div>
+                        <div class="col-lg-2 col-sm-12">
+                            <p class="ticket-status status-confirmed text-center"
+                               th:text="${#numbers.formatDecimal(booking.totalPrice, 0, 'COMMA', 0, 'POINT')} + '₫'"></p>
+                            <p class="ticket-status status-confirmed text-center" th:text="${booking.status}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="text-center fw-bold mt-2" th:if="${bookings.isEmpty()}">Không có lịch sử đặt vé!</h4>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+        <ul class="pagination" th:if="${bookings.totalPages > 1}">
+            <li class="page-item" th:classappend="${bookings.hasPrevious() ? '' : 'disabled'}">
+                <a class="page-link" th:href="@{/booking-history(page=${bookings.number - 1})}"> <span aria-hidden="true">&laquo;</span></a>
+            </li>
+            <li class="page-item" th:each="pageNum : ${#numbers.sequence(0, bookings.totalPages - 1)}"
+                th:classappend="${pageNum == bookings.number} ? 'active'">
+                <a class="page-link" th:href="@{/booking-history(page=${pageNum})}"
+                   th:text="${pageNum + 1}">1</a>
+            </li>
+            <li class="page-item" th:classappend="${bookings.hasNext() ? '' : 'disabled'}">
+                <a class="page-link" th:href="@{booking-history(page=${bookings.number + 1})}"> <span aria-hidden="true">&raquo;</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div th:replace="common/layout.html :: footer"></div>
+
+</body>
+</html>
