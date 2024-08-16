@@ -13,5 +13,9 @@ public interface ISeatService {
 
     void updateSeatStatus(List<Integer> seatIds, String status, LocalDateTime holdExpiration);
 
+    void updateSeatStatusConfig(List<Integer> seatIds, String status);
+
     long countAvailableSeatsByFlightId(Integer flightId);
+
+    Seat findById(Integer seatId);
 }

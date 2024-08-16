@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Error Page</title>
+    <style>
+        /* (A) THE BASE */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .bar {
+            max-width: 400px;
+            padding: 20px;
+            margin: 10px;
+            color: #333;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        /* (B) THE VARIATIONS */
+        .error {
+            color: #8e2a2a;
+            background: #ffe0e0;
+            border: 1px solid #2a8e2a;
+        }
+
+        /* Customize additional variations or effects as needed */
+
+        .ico {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="bar error">
+    <i class="ico">⚠️</i>
+    <p>Có một thanh toán đang diễn ra. Vui lòng quay trở lại trong ít phút...</p>
+    <p><i>SkJourney Airline xin lỗi vì sự bất tiện này.</i></p>
+</div>
+</body>
+</html>

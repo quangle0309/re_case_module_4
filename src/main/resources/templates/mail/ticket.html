@@ -21,24 +21,24 @@
 <body>
 <h3>SkyJourney airline xin cám ơn quý khách</h3>
 <p>Thông tin vé của quý khách xin truy cập vào đường link bên dưới để kiểm tra</p>
-    <table>
-        <tr>
-            <th>Chuyến bay</th>
-            <th>Họ và tên</th>
-            <th>Thời gian cất cánh</th>
-            <th>Mã vé</th>
-            <th>Vé</th>
-        </tr>
-        <tr>
-            <td><span th:text="${booking.getFlight().getDepartureAirport().getCity()}"></span> đến <span th:text="${booking.getFlight().getArrivalAirport().getCity()}"></span></td>
-            <td th:text="${booking.getName()}"></td>
-            <td th:text="${booking.getFlight().getDepartureTime()}"></td>
-            <td th:text="${booking.getCodeBooking()}"></td>
-            <td>
-                <a th:href="@{${'http://localhost:8080/ticket/' + booking.getBookingId()}}">Click để xem vé</a>
-            </td>
-        </tr>
-    </table>
+<table>
+    <tr>
+        <th>Chuyến bay</th>
+        <th>Họ và tên</th>
+        <th>Thời gian cất cánh</th>
+        <th>Mã vé</th>
+        <th>Vé</th>
+    </tr>
+    <tr>
+        <td><span th:text="${booking.getFlight().getDepartureAirport().getCity()}"></span> đến <span th:text="${booking.getFlight().getArrivalAirport().getCity()}"></span></td>
+        <td th:text="${booking.getName()}"></td>
+        <td th:text="${booking.getFlight().getDepartureTime()}"></td>
+        <td th:text="${booking.getCodeBooking()}"></td>
+        <td>
+            <a th:href="@{${'http://localhost:8080/ticket/' + booking.getBookingId()}}">Click để xem vé</a>
+        </td>
+    </tr>
+</table>
 <p style="color: red">Mọi vấn đề xin liên hệ hotline: 0339198933</p>
 </body>
 </html>

@@ -4,6 +4,7 @@ import com.group2.case_study.models.Flight;
 import com.group2.case_study.models.Seat;
 import com.group2.case_study.services.IFlightService;
 import com.group2.case_study.services.ISeatService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,9 +35,10 @@ public class SeatController {
     }
 
     @PostMapping("/{flightId}/confirm-booking")
-    public String confirmBooking(@PathVariable Integer flightId, @RequestParam("seatIds") List<Integer> seatIds) {
-        LocalDateTime holdExpiration = LocalDateTime.now().plusMinutes(1);
+    public String confirmBooking(@PathVariable Integer flightId, @RequestParam("seatIds") List<Integer> seatIds, HttpSession session) {
+        LocalDateTime holdExpiration = LocalDateTime.now().plusMinutes(2);
         seatService.updateSeatStatus(seatIds, "HOLD", holdExpiration);
+        session.setAttribute("seats", seatIds);
         return "redirect:/flights/" + flightId + "/seats";
     }
 

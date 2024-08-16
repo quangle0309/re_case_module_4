@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>Thanh toán</title>
+    <style>
+        .info {
+            font-weight: bold;
+            font-size: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -15,21 +21,23 @@
             <div class="card">
                 <div class="card-body">
                     <img th:src="@{/images/vnpay-logo.png}" style="width: 200px">
-                    <h2 class="card-title">Thanh Toán Đơn Hàng</h2>
+                    <h2 class="card-title">Xác nhận thông tin</h2>
                     <form th:action="@{/vnp/submitOrder/{flightId}(flightId=${flightId})}" method="post">
-                        <input type="hidden" name="gender" th:value="${gender}"/>
-                        <input type="hidden" name="country" th:value="${country}"/>
-                        <input type="hidden" name="seat" th:value="${seat}"/>
-                        <input type="hidden" name="email" th:value="${email}"/>
-                        <div class="form-group">
-                            <label for="amount">Số tiền:</label>
-                            <input type="number" class="form-control" id="amount" name="amount" required th:value="${ticketPrice}">
+                        <div th:each="info,status:${customers}">
+                            <fieldset>
+                                <legend class="info">Khách hàng <span th:text="${status.count}"></span></legend>
+                                <p>Họ tên : <span th:text="*{info.getName()}"></span></p>
+                                <p>Giới tính : <span th:text="*{info.getGender()}"></span></p>
+                                <p>Quốc gia : <span th:text="*{info.getCountry()}"></span></p>
+                                <p>Số ghế : <span th:text="*{info.getNumberOfSeats()}"></span></p>
+                            </fieldset>
                         </div>
                         <div class="form-group">
-                            <label for="orderInfo">Tên khách hàng:</label>
-                            <input type="text" class="form-control" id="orderInfo" name="orderInfo" required th:value="${name}">
+                            <h4 >Số tiền cần thanh toán: <span th:text="${ticketPrice}"></span> VND</h4>
+                            <input type="hidden" name="amount" th:value="${#numbers.formatDecimal(ticketPrice, 0,0)}"/>
+                            <input type="hidden" name="orderInfo" th:value="Order"/>
                         </div>
-                        <button type="submit" class="btn btn-primary">Thanh toán</button>
+                        <button type="submit" class="btn btn-primary">Xác nhận thanh toán</button>
                     </form>
                 </div>
             </div>

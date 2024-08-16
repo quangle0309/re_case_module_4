@@ -143,7 +143,7 @@
                                    th:text="${#temporals.format(flight.departureTime, 'HH:mm  dd-MM-yyyy')}"></p>
                                 <h5 th:text="${#numbers.formatDecimal(flight.price, 0, 'COMMA', 0, 'POINT')} + '₫'"></h5>
                                 <div class="d-flex justify-content-end">
-                                    <a href="#" class="btn btn-sm btn-primary mt-3 text-light failed">Đặt vé</a>
+                                    <a th:href="@{'/flights/' + ${flight.flightId} + '/seats'}" class="btn btn-sm btn-primary mt-3 text-light">Đặt vé</a>
                                 </div>
                             </div>
                         </div>

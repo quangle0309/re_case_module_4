@@ -37,7 +37,20 @@ public class SeatService implements ISeatService {
     }
 
     @Override
+    public void updateSeatStatusConfig(List<Integer> seatIds, String status) {
+        for (Integer seatId : seatIds) {
+            seatRepository.updateSeatStatusConfig(seatId, status);
+        }
+    }
+
+
+    @Override
     public long countAvailableSeatsByFlightId(Integer flightId) {
         return seatRepository.countAvailableSeatsByFlightId(flightId);
+    }
+
+    @Override
+    public Seat findById(Integer seatId) {
+        return seatRepository.findById(seatId).orElse(null);
     }
 }
